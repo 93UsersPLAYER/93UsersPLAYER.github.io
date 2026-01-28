@@ -3,36 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal // Access Granted</title>
+    <title>KatreiMARKA // Terminal</title>
     <style>
         body {
             background-color: #000;
-            color: #0f0;
+            margin: 0;
+            overflow: hidden;
             font-family: 'Courier New', Courier, monospace;
+        }
+
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            margin: 0;
-            overflow: hidden;
         }
 
         .terminal {
-            width: 80%;
+            width: 85%;
             max-width: 800px;
-            background: rgba(0, 20, 0, 0.9);
-            border: 1px solid #0f0;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
-            position: relative;
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid #0f0;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+            color: #0f0;
         }
 
         .header {
             border-bottom: 1px solid #0f0;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
             font-weight: bold;
+        }
+
+        .user-name {
+            color: #fff;
+            text-shadow: 0 0 10px #0f0;
         }
 
         .cursor {
@@ -41,7 +56,6 @@
             height: 20px;
             background: #0f0;
             animation: blink 0.8s infinite;
-            vertical-align: middle;
         }
 
         @keyframes blink {
@@ -49,63 +63,61 @@
             50% { opacity: 0; }
         }
 
-        .glitch {
-            font-size: 2em;
-            text-shadow: 2px 2px #f00;
-            animation: glitch-anim 2s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-anim {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
-
-        .info {
-            margin-top: 20px;
-            line-height: 1.6;
-        }
-
         a {
-            color: #0f0;
-            text-decoration: none;
-            border: 1px solid #0f0;
-            padding: 5px 10px;
-            margin-top: 10px;
-            display: inline-block;
-        }
-
-        a:hover {
-            background: #0f0;
             color: #000;
+            background: #0f0;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <div class="terminal">
-        <div class="header">SYSTEM STATUS: ENCRYPTED // SYNTAX-CR OS</div>
-        <div class="glitch">ACCESS GRANTED</div>
-        
-        <div class="info">
-            <p>> Initializing core systems...</p>
-            <p>> Discord Bot Module: <span style="color: #fff;">Online</span></p>
-            <p>> Security Testing: <span style="color: #fff;">Active</span></p>
-            <p>> Root Directory: C:/Users/Syntax/</p>
-            <br>
-            <p>> "The quietest people have the loudest minds."</p>
-        </div>
+    <canvas id="matrix"></canvas>
 
-        <div class="input-line">
-            root@syntaxcr:~$ <span class="text">waiting for command...</span><span class="cursor"></span>
+    <div class="container">
+        <div class="terminal">
+            <div class="header">> USER_UPDATED: <span class="user-name">KatreiMARKA</span></div>
+            <div style="font-size: 1.5em; margin-bottom: 15px;">ACCESS GRANTED</div>
+            
+            <p>> Identity: KatreiMARKA</p>
+            <p>> Role: Lead Developer / Security Expert</p>
+            <p>> System: SyntaxCR v1.0.5</p>
+            
+            <div style="margin-top: 20px;">
+                KatreiMARKA@Terminal:~$ <span class="cursor"></span>
+            </div>
+
+            <a href="https://github.com">PROJELERİME GİT</a>
         </div>
-        
-        <br>
-        <a href="https://github.com">PROJELERİ GÖRÜNTÜLE</a>
     </div>
 
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const letters = "0101010101010101"; // Daha hacker vari sadece 0 ve 1 kullanabilirsin
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let i = 0; i < columns; i++) drops[i] = 1;
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#0f0";
+            ctx.font = fontSize + "px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+    </script>
 </body>
 </html>
