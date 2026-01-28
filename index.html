@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KatreiMARKA // Terminal</title>
+    <title>KatreiMARKA // Root Access</title>
     <style>
         body {
             background-color: #000;
             margin: 0;
             overflow: hidden;
             font-family: 'Courier New', Courier, monospace;
+            color: #0f0;
         }
 
+        /* Matrix Arka Planı */
         #matrix {
             position: fixed;
             top: 0;
@@ -26,51 +28,121 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            width: 100%;
         }
 
         .terminal {
-            width: 85%;
-            max-width: 800px;
-            background: rgba(0, 0, 0, 0.85);
+            width: 90%;
+            max-width: 850px;
+            background: rgba(0, 10, 0, 0.92);
             border: 2px solid #0f0;
-            padding: 30px;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
-            color: #0f0;
+            padding: 40px;
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.2);
+            position: relative;
         }
 
         .header {
             border-bottom: 1px solid #0f0;
             margin-bottom: 20px;
             padding-bottom: 10px;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+        }
+
+        .username {
+            color: #fff;
+            text-shadow: 0 0 8px #fff;
             font-weight: bold;
         }
 
-        .user-name {
-            color: #fff;
-            text-shadow: 0 0 10px #0f0;
+        .glitch {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: glitch-anim 3s infinite;
+            text-transform: uppercase;
+        }
+
+        @keyframes glitch-anim {
+            0% { text-shadow: 2px 0 #f00, -2px 0 #00f; }
+            2% { text-shadow: -2px 0 #f00, 2px 0 #00f; }
+            4% { text-shadow: 2px 0 #f00, -2px 0 #00f; }
+            100% { text-shadow: 2px 0 #f00, -2px 0 #00f; }
+        }
+
+        .info-line {
+            margin: 8px 0;
+            font-size: 0.95em;
+        }
+
+        .white-text { color: #fff; }
+        .red-text { color: #f55; }
+        .grey-text { color: #888; }
+
+        /* Proje Tablosu Tasarımı */
+        .project-box {
+            margin-top: 30px;
+            border: 1px dashed #0f0;
+            padding: 15px;
+            background: rgba(0, 20, 0, 0.5);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        th {
+            text-align: left;
+            border-bottom: 1px solid #0f0;
+            padding: 8px;
+            color: #0f0;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #333;
+        }
+
+        /* Komut Satırı */
+        .command-line {
+            margin-top: 25px;
+            background: #000;
+            padding: 10px;
+            border-left: 3px solid #0f0;
         }
 
         .cursor {
             display: inline-block;
             width: 10px;
-            height: 20px;
+            height: 18px;
             background: #0f0;
             animation: blink 0.8s infinite;
+            vertical-align: middle;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
+        @keyframes blink { 50% { opacity: 0; } }
 
-        a {
-            color: #000;
-            background: #0f0;
-            text-decoration: none;
-            padding: 10px 20px;
+        /* Buton */
+        .btn {
             display: inline-block;
             margin-top: 20px;
+            padding: 12px 25px;
+            background: #0f0;
+            color: #000;
+            text-decoration: none;
             font-weight: bold;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #000;
+            color: #0f0;
+            box-shadow: 0 0 15px #0f0;
+            border: 1px solid #0f0;
         }
     </style>
 </head>
@@ -80,73 +152,98 @@
 
     <div class="container">
         <div class="terminal">
-            <div class="header">> USER_UPDATED: <span class="user-name">KatreiMARKA</span></div>
-            <div style="font-size: 1.5em; margin-bottom: 15px;">ACCESS GRANTED</div>
+            <div class="header">
+                > SYSTEM_OVERRIDE // USER: <span class="username">KatreiMARKA</span>
+            </div>
             
-            <p>> Identity: KatreiMARKA</p>
-            <p>> Role: Lead Developer / Security Expert</p>
-            <p>> System: SyntaxCR v1.0.5</p>
+            <div class="glitch">ACCESS GRANTED</div>
             
-            <div style="margin-top: 20px;">
-                KatreiMARKA@Terminal:~$ <span class="cursor"></span>
+            <div class="info-section">
+                <p class="info-line">> Identity Verified: <span class="white-text">KatreiMARKA</span></p>
+                <p class="info-line">> Role: <span class="white-text">Lead Developer & Security Researcher</span></p>
+                <p class="info-line">> System Version: <span class="white-text">SyntaxCR v1.0.5</span></p>
+                <p class="info-line">> Firewall Status: <span class="red-text">[ DISABLED ]</span></p>
             </div>
 
-            <a href="https://github.com">PROJELERİME GİT</a>
+            <div class="project-box">
+                <h3 style="margin: 0; font-size: 1em;">[ ACTIVE_PROJECTS_DATABASE ]</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PROJECT ID</th>
+                            <th>STATUS</th>
+                            <th>DESCRIPTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SyntaxCR_DiscordBot</td>
+                            <td class="white-text">STABLE</td>
+                            <td class="grey-text">Moderation / Auto-Role System</td>
+                        </tr>
+                        <tr>
+                            <td>MC_Server_Config_1.8.8</td>
+                            <td class="white-text">LOCKED</td>
+                            <td class="grey-text">Custom Enchants / Scoreboard</td>
+                        </tr>
+                        <tr>
+                            <td>Security_Lab_Tools</td>
+                            <td class="red-text">TESTING...</td>
+                            <td class="grey-text">Python / Network Analysis</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="command-line">
+                KatreiMARKA@Terminal:~$ <span class="white-text">./init_portfolio.sh</span><span class="cursor"></span>
+            </div>
+
+            <a href="https://github.com" class="btn">PROJELERİ GÖRÜNTÜLE</a>
         </div>
     </div>
 
     <script>
+        // Matrix Yağmuru Efekti
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
+
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        const letters = "0101010101010101"; // Daha hacker vari sadece 0 ve 1 kullanabilirsin
-        const fontSize = 16;
+
+        const letters = "01"; // Sadece 0 ve 1 kullanılarak daha hacker görünümü
+        const fontSize = 14;
         const columns = canvas.width / fontSize;
+
         const drops = [];
-        for (let i = 0; i < columns; i++) drops[i] = 1;
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
         function draw() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)"; // İz bırakma efekti
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#0f0";
+
+            ctx.fillStyle = "#0f0"; // Yeşil yazı
             ctx.font = fontSize + "px monospace";
+
             for (let i = 0; i < drops.length; i++) {
                 const text = letters.charAt(Math.floor(Math.random() * letters.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
                 drops[i]++;
             }
         }
         setInterval(draw, 33);
+
+        // Ekran boyutu değişirse canvas'ı yenile
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>
-<div style="margin-top: 30px; border: 1px dashed #0f0; padding: 15px;">
-    <h3 style="margin-top: 0; color: #fff;">[ ACTIVE_PROJECTS_DATABASE ]</h3>
-    <table style="width: 100%; border-collapse: collapse; font-size: 0.85em;">
-        <thead>
-            <tr style="border-bottom: 1px solid #0f0; text-align: left;">
-                <th style="padding: 5px;">PROJECT_ID</th>
-                <th style="padding: 5px;">STATUS</th>
-                <th style="padding: 5px;">TYPE</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="padding: 5px;">SyntaxCR_DiscordBot</td>
-                <td style="padding: 5px; color: #fff;">STABLE</td>
-                <td style="padding: 5px;">Moderation / Auto-Role</td>
-            </tr>
-            <tr>
-                <td style="padding: 5px;">MC_Server_Config_1.8.8</td>
-                <td style="padding: 5px; color: #fff;">ENCRYPTED</td>
-                <td style="padding: 5px;">Custom Items / Scoreboard</td>
-            </tr>
-            <tr>
-                <td style="padding: 5px;">Security_Lab_Tools</td>
-                <td style="padding: 5px; color: #f00;">TESTING...</td>
-                <td style="padding: 5px;">Python / Ethical Hacking</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
